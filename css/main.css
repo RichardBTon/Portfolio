@@ -114,7 +114,7 @@ p {
 .intro-wrapper {
   position: absolute;
   width: 900px;
-  left: 10%;
+  left: calc(50% - 450px);
   top: 320px;
   background-color: var(--secondaryColor);
   border-radius: 5px;
@@ -302,14 +302,15 @@ p {
   }
   .intro-wrapper {
     width: 70%;
-    margin: auto;
+    left: calc(100% - 62% - 40px);
   }
 }
 @media screen and (max-width: 1000px) {
   #sec-1 {
-    height: 1500px;
+    height: 1700px;
   }
   .intro-wrapper {
+    /* position:  */
     grid-template-areas:
       "navbar navbar"
       "left-column left-column"
