@@ -1,0 +1,13 @@
+/* Muligens ikke nødvendig, men grei å ha. */
+
+:root {
+  --mainColor: #46344e;
+  --secondaryColor: #382a3f;
+
+  --borderColor: #1d1520;
+
+  --mainText: #fff;
+  --secondaryText: #eeeeee;
+
+  --themeDotBorder: #fff;
+}
