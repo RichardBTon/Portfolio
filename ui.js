@@ -10,8 +10,12 @@ window.addEventListener("load", function () {
   }
 
   // Endre tema
-  let hrefs = ["", "blue.css", "green.css", "white.css"];
+  let hrefs = ["purple.css", "blue.css", "green.css", "white.css"];
   let temaKnapper = document.getElementsByClassName("temadot");
+
+  if (localStorage.getItem("tema") != undefined) {
+    document.getElementById("tema_css").href = localStorage.getItem("tema");
+  }
 
   for (var i = 0; i < temaKnapper.length; i++) {
     let setTema1 = setTema(hrefs, temaKnapper, i);
@@ -33,20 +37,20 @@ window.addEventListener("load", function () {
       event.preventDefault();
       document.getElementById("kontakt").scrollIntoView();
     });
-  console.log(document.getElementById("kontakt-btn"));
 });
 
 function setTema(hrefs, temaKnapper, i) {
   return function () {
-    console.log(i);
-    document.getElementById("tema_css").href = "css/" + hrefs[i];
+    temaPath = "css/" + hrefs[i];
+    document.getElementById("tema_css").href = temaPath;
+    localStorage.setItem("tema", temaPath);
   };
 }
 
 function flyttInit(event) {
-  // Sjekker om targetet er navbar, hvis ikke bryter den
   let sec1 = document.getElementById("sec-1");
   let element = event.currentTarget;
+  // Sjekker om targetet er navbar, hvis ikke bryter den
 
   if (!event.target.classList.contains("navbar")) {
     return;
@@ -134,9 +138,7 @@ function borders(event, element, xDiff, yDiff, sec1) {
 
 function ScrollFunc(sections, secDotter, k) {
   return function () {
-    console.log(k);
     let sectionsOver = sections.slice(0, k + 1);
-    console.log(sectionsOver);
     let totalHeight = 0;
 
     for (var i = 0; i < sectionsOver.length; i++) {
