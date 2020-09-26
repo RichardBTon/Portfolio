@@ -1,3 +1,3 @@
 # Portfolio
-Side som viser hva jeg kan og har gjort
-føler jeg må kjøre litt endringer her også
+
+Test ut for deg selv, litt usikker på hva jeg bør skrive her
