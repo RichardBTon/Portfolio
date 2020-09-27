@@ -49,25 +49,26 @@ function setTema(hrefs, temaKnapper, i) {
 }
 
 function flyttInit(event) {
-  let sec1 = document.getElementById("sec-1");
-  let element = event.currentTarget;
   // Sjekker om targetet er navbar, hvis ikke bryter den
 
   if (!event.target.classList.contains("navbar")) {
     return;
   }
+  let sec = document.getElementById("sec-1");
 
-  if (700 > sec1.offsetWidth) {
+  // flytter ikke hvis vinduet er
+  if (700 > sec.offsetWidth) {
     return;
   }
 
+  let element = event.currentTarget;
   element.utgangsstillingMusX = event.x;
   element.utgangsstillingMusY = event.y;
 
   element.utgangsstillingLeft = element.offsetLeft;
   element.utgangsstillingTop = element.offsetTop;
 
-  let flytt = flyttElm(element, sec1);
+  let flytt = flyttElm(element, sec);
   document.body.addEventListener("mousemove", flytt);
 
   document.addEventListener("mouseup", function fjern() {
@@ -76,7 +77,7 @@ function flyttInit(event) {
   });
 }
 
-function flyttElm(element, sec1) {
+function flyttElm(element, sec) {
   return function flytt(event) {
     // Fjerner all default funksjon i eventet, i dette tilfellet mousedown
     event.preventDefault();
@@ -84,7 +85,7 @@ function flyttElm(element, sec1) {
     let xDiff = element.utgangsstillingMusX - event.x;
     let yDiff = element.utgangsstillingMusY - event.y;
 
-    diffs = borders(element, xDiff, yDiff, sec1);
+    diffs = borders(element, xDiff, yDiff, sec);
     xDiff = diffs[0];
     yDiff = diffs[1];
 
@@ -102,7 +103,7 @@ function flyttElm(element, sec1) {
   };
 }
 
-function borders(element, xDiff, yDiff, sec1) {
+function borders(element, xDiff, yDiff, sec) {
   // Setter border Top
   if (element.utgangsstillingTop - yDiff < 0) {
     yDiff = element.utgangsstillingTop;
@@ -111,10 +112,10 @@ function borders(element, xDiff, yDiff, sec1) {
   // Setter border høyre
   if (
     element.utgangsstillingLeft + element.offsetWidth - xDiff >
-    sec1.offsetWidth
+    sec.offsetWidth
   ) {
     xDiff = -(
-      sec1.offsetWidth -
+      sec.offsetWidth -
       (element.utgangsstillingLeft + element.offsetWidth)
     );
   }
@@ -122,10 +123,10 @@ function borders(element, xDiff, yDiff, sec1) {
   // Setter border nede
   if (
     element.utgangsstillingTop + element.offsetHeight - yDiff >
-    sec1.offsetHeight
+    sec.offsetHeight
   ) {
     yDiff = -(
-      sec1.offsetHeight -
+      sec.offsetHeight -
       (element.utgangsstillingTop + element.offsetHeight)
     );
   }
@@ -165,3 +166,7 @@ function resizefunk() {
   }
   element1.style.left = element1.offsetLeft - xDiff1 + "px";
 }
+
+// Ønsker å ha en flyttfunksjon som ikke bare funker for sec-1.
+// Ønsker borders som flytter elementet automatisk? Så slipper jeg å lage en
+// egen resizefunk.
