@@ -79,14 +79,14 @@ function flyttInit(event) {
 }
 
 function flyttElm(element, sec) {
-  return function flytt(event) {
+  return function (event) {
     // Fjerner all default funksjon i eventet, i dette tilfellet mousedown
     event.preventDefault();
 
     let xDiff = element.utgangsstillingMusX - event.x;
     let yDiff = element.utgangsstillingMusY - event.y;
 
-    diffs = borders(element, xDiff, yDiff, sec);
+    diffs = borders(element, sec, xDiff, yDiff);
     xDiff = diffs[0];
     yDiff = diffs[1];
 
@@ -103,37 +103,26 @@ function flyttElm(element, sec) {
   };
 }
 
-function borders(element, xDiff, yDiff, sec) {
+function borders(element, sec, xDiff = 0, yDiff = 0) {
+  // console.log(element, "hei");
   // Setter border Top
-  if (element.utgangsstillingTop - yDiff < 0) {
-    yDiff = element.utgangsstillingTop;
+  if (element.offsetTop - yDiff < 0) {
+    yDiff = element.offsetTop;
   }
 
   // Setter border høyre
-  if (
-    element.utgangsstillingLeft + element.offsetWidth - xDiff >
-    sec.offsetWidth
-  ) {
-    xDiff = -(
-      sec.offsetWidth -
-      (element.utgangsstillingLeft + element.offsetWidth)
-    );
+  if (element.offsetLeft + element.offsetWidth - xDiff > sec.offsetWidth) {
+    xDiff = -(sec.offsetWidth - (element.offsetLeft + element.offsetWidth));
   }
 
   // Setter border nede
-  if (
-    element.utgangsstillingTop + element.offsetHeight - yDiff >
-    sec.offsetHeight
-  ) {
-    yDiff = -(
-      sec.offsetHeight -
-      (element.utgangsstillingTop + element.offsetHeight)
-    );
+  if (element.offsetTop + element.offsetHeight - yDiff > sec.offsetHeight) {
+    yDiff = -(sec.offsetHeight - (element.offsetTop + element.offsetHeight));
   }
 
   // Setter border venstre
-  if (element.utgangsstillingLeft - xDiff < 0) {
-    xDiff = element.utgangsstillingLeft;
+  if (element.offsetLeft - xDiff < 0) {
+    xDiff = element.offsetLeft;
   }
   return [xDiff, yDiff];
 }
@@ -153,18 +142,22 @@ function ScrollFunc(sections, secDotter, k) {
 
 function resizefunk() {
   let vindu = document.getElementsByClassName("window");
-  let element1 = vindu[0];
+  let element = vindu[0];
+
+  // console.log(element);
   let sec2 = document.getElementById("sec-1");
-  let xDiff1 = 0;
-  // Venstre
-  if (element1.offsetLeft < 0) {
-    xDiff1 = element1.utgangsstillingLeft;
-  }
-  // Høyre
-  if (element1.offsetLeft + element1.offsetWidth > sec2.offsetWidth) {
-    xDiff1 = -(sec2.offsetWidth - (element1.offsetLeft + element1.offsetWidth));
-  }
-  element1.style.left = element1.offsetLeft - xDiff1 + "px";
+  // // Venstre
+  // if (element.offsetLeft < 0) {
+  //   xDiff1 = element.utgangsstillingLeft;
+  // }
+  // // Høyre
+  // if (element.offsetLeft + element.offsetWidth > sec2.offsetWidth) {
+  //   xDiff1 = -(sec2.offsetWidth - (element.offsetLeft + element.offsetWidth));
+  // }
+  // element.style.left = element.offsetLeft - xDiff1 + "px";
+  xDiff = borders(element, sec2)[0];
+
+  flyttElement(element, element.offsetLeft - xDiff, element.offsetTop);
 }
 
 function flyttElement(element, left, top) {
