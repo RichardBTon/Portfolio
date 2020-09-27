@@ -15,10 +15,12 @@ window.addEventListener("load", function () {
   const hrefs = ["purple.css", "blue.css", "green.css", "white.css"];
   const temaKnapper = document.getElementsByClassName("temadot");
 
+  // Set tema hvis lagret
   if (localStorage.getItem("tema") != undefined) {
     document.getElementById("tema_css").href = localStorage.getItem("tema");
   }
 
+  // Legg til riktig tema til riktige temaknapper
   for (var i = 0; i < temaKnapper.length; i++) {
     let setTema1 = setTema(hrefs, temaKnapper, i);
     temaKnapper[i].addEventListener("click", setTema1);
@@ -51,12 +53,13 @@ function setTema(hrefs, temaKnapper, i) {
 
 function flyttInit(event) {
   // Sjekker om targetet er navbar, hvis ikke bryter den
-
   if (!event.target.classList.contains("navbar")) {
     return;
   }
-  let sec = document.getElementById("sec-1");
 
+  // Pass på at seksjonen der du vil at skal kunne bevege seg er parentElement til event.currentTarget
+  let sec = event.currentTarget.parentElement;
+  // debugger;
   // flytter ikke hvis vinduet er
   if (700 > sec.offsetWidth) {
     return;
@@ -69,7 +72,7 @@ function flyttInit(event) {
   element.utgangsstillingLeft = element.offsetLeft;
   element.utgangsstillingTop = element.offsetTop;
 
-  let flytt = flyttElm(element, sec);
+  let flytt = flyttElmMus(element, sec);
   document.body.addEventListener("mousemove", flytt);
 
   document.addEventListener("mouseup", function fjern() {
@@ -78,7 +81,7 @@ function flyttInit(event) {
   });
 }
 
-function flyttElm(element, sec) {
+function flyttElmMus(element, sec) {
   return function (event) {
     // Fjerner all default funksjon i eventet, i dette tilfellet mousedown
     event.preventDefault();
@@ -93,7 +96,7 @@ function flyttElm(element, sec) {
     let nyUtgangsstillingLeft = element.utgangsstillingLeft - xDiff;
     let nyUtgangsstillingTop = element.utgangsstillingTop - yDiff;
 
-    flyttElement(element, nyUtgangsstillingLeft, nyUtgangsstillingTop);
+    flyttElm(element, nyUtgangsstillingLeft, nyUtgangsstillingTop);
 
     element.utgangsstillingLeft = nyUtgangsstillingLeft;
     element.utgangsstillingTop = nyUtgangsstillingTop;
@@ -157,10 +160,10 @@ function resizefunk() {
   // element.style.left = element.offsetLeft - xDiff1 + "px";
   xDiff = borders(element, sec2)[0];
 
-  flyttElement(element, element.offsetLeft - xDiff, element.offsetTop);
+  flyttElm(element, element.offsetLeft - xDiff, element.offsetTop);
 }
 
-function flyttElement(element, left, top) {
+function flyttElm(element, left, top) {
   // Elementet må ha position: absolute;
   element.style.left = left + "px";
   element.style.top = top + "px";
