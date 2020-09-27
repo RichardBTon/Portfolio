@@ -302,7 +302,6 @@ p {
   }
   .intro-wrapper {
     width: 70%;
-    left: calc(100% - 62% - 40px);
   }
 }
 @media screen and (max-width: 1000px) {

@@ -8,10 +8,11 @@ window.addEventListener("load", function () {
   for (var i = 0; i < elements.length; i++) {
     elements[i].addEventListener("mousedown", flyttInit);
   }
+  window.addEventListener("resize", resizefunk);
 
   // Endre tema
-  let hrefs = ["purple.css", "blue.css", "green.css", "white.css"];
-  let temaKnapper = document.getElementsByClassName("temadot");
+  const hrefs = ["purple.css", "blue.css", "green.css", "white.css"];
+  const temaKnapper = document.getElementsByClassName("temadot");
 
   if (localStorage.getItem("tema") != undefined) {
     document.getElementById("tema_css").href = localStorage.getItem("tema");
@@ -83,7 +84,7 @@ function flyttElm(element, sec1) {
     let xDiff = element.utgangsstillingMusX - event.x;
     let yDiff = element.utgangsstillingMusY - event.y;
 
-    diffs = borders(event, element, xDiff, yDiff, sec1);
+    diffs = borders(element, xDiff, yDiff, sec1);
     xDiff = diffs[0];
     yDiff = diffs[1];
 
@@ -101,7 +102,7 @@ function flyttElm(element, sec1) {
   };
 }
 
-function borders(event, element, xDiff, yDiff, sec1) {
+function borders(element, xDiff, yDiff, sec1) {
   // Setter border Top
   if (element.utgangsstillingTop - yDiff < 0) {
     yDiff = element.utgangsstillingTop;
@@ -147,4 +148,20 @@ function ScrollFunc(sections, secDotter, k) {
 
     window.scrollTo(0, totalHeight);
   };
+}
+
+function resizefunk() {
+  let vindu = document.getElementsByClassName("window");
+  let element1 = vindu[0];
+  let sec2 = document.getElementById("sec-1");
+  let xDiff1 = 0;
+  // Venstre
+  if (element1.offsetLeft < 0) {
+    xDiff1 = element1.utgangsstillingLeft;
+  }
+  // Høyre
+  if (element1.offsetLeft + element1.offsetWidth > sec2.offsetWidth) {
+    xDiff1 = -(sec2.offsetWidth - (element1.offsetLeft + element1.offsetWidth));
+  }
+  element1.style.left = element1.offsetLeft - xDiff1 + "px";
 }
