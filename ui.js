@@ -3,13 +3,13 @@
 
 window.addEventListener("load", function () {
   // Flytt vindu
-  let elements = document.getElementsByClassName("window");
+  let vinduer = document.getElementsByClassName("window");
 
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].addEventListener("mousedown", flyttInit);
+  for (var i = 0; i < vinduer.length; i++) {
+    vinduer[i].addEventListener("mousedown", flyttInit);
   }
 
-  window.addEventListener("resize", resizefunk);
+  window.addEventListener("resize", resizeBorders);
 
   // Endre tema
   const hrefs = ["purple.css", "blue.css", "green.css", "white.css"];
@@ -143,24 +143,17 @@ function ScrollFunc(sections, secDotter, k) {
   };
 }
 
-function resizefunk() {
-  let vindu = document.getElementsByClassName("window");
-  let element = vindu[0];
+function resizeBorders() {
+  let vinduer = document.getElementsByClassName("window");
+  let element;
+  let sec;
 
-  // console.log(element);
-  let sec2 = document.getElementById("sec-1");
-  // // Venstre
-  // if (element.offsetLeft < 0) {
-  //   xDiff1 = element.utgangsstillingLeft;
-  // }
-  // // Høyre
-  // if (element.offsetLeft + element.offsetWidth > sec2.offsetWidth) {
-  //   xDiff1 = -(sec2.offsetWidth - (element.offsetLeft + element.offsetWidth));
-  // }
-  // element.style.left = element.offsetLeft - xDiff1 + "px";
-  xDiff = borders(element, sec2)[0];
-
-  flyttElm(element, element.offsetLeft - xDiff, element.offsetTop);
+  for (var i = 0; i < vinduer.length; i++) {
+    element = vinduer[i];
+    sec = element.parentElement;
+    xDiff = borders(element, sec)[0];
+    flyttElm(element, element.offsetLeft - xDiff, element.offsetTop);
+  }
 }
 
 function flyttElm(element, left, top) {
@@ -168,6 +161,3 @@ function flyttElm(element, left, top) {
   element.style.left = left + "px";
   element.style.top = top + "px";
 }
-// Ønsker å ha en flyttfunksjon som ikke bare funker for sec-1.
-// Ønsker borders som flytter elementet automatisk? Så slipper jeg å lage en
-// egen resizefunk.
