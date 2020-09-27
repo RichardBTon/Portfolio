@@ -286,15 +286,31 @@ p {
   margin-right: 15px;
 }
 
+#about {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "text text bilde"
+    "text text bilde";
+}
+
 .text-wrapper {
+  grid-area: text;
   width: 60%;
   margin: auto;
-  margin-top: 30px;
   background-color: rgba(21, 32, 43, 0.6);
   padding: 10px;
+  line-height: 2em;
+
   -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.7);
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.7);
+}
+
+.text-wrapper p {
+  text-align: left;
+  color: #fff;
 }
 @media screen and (max-width: 1600px) {
   .main-container {
