@@ -3,21 +3,24 @@
 
 window.addEventListener("load", function () {
   // Flytt vindu
-  let elements = document.getElementsByClassName("window");
+  let vinduer = document.getElementsByClassName("window");
 
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].addEventListener("mousedown", flyttInit);
+  for (var i = 0; i < vinduer.length; i++) {
+    vinduer[i].addEventListener("mousedown", flyttInit);
   }
-  window.addEventListener("resize", resizefunk);
+
+  window.addEventListener("resize", resizeBorders);
 
   // Endre tema
   const hrefs = ["purple.css", "blue.css", "green.css", "white.css"];
   const temaKnapper = document.getElementsByClassName("temadot");
 
+  // Set tema hvis lagret
   if (localStorage.getItem("tema") != undefined) {
     document.getElementById("tema_css").href = localStorage.getItem("tema");
   }
 
+  // Legg til riktig tema til riktige temaknapper
   for (var i = 0; i < temaKnapper.length; i++) {
     let setTema1 = setTema(hrefs, temaKnapper, i);
     temaKnapper[i].addEventListener("click", setTema1);
@@ -50,12 +53,13 @@ function setTema(hrefs, temaKnapper, i) {
 
 function flyttInit(event) {
   // Sjekker om targetet er navbar, hvis ikke bryter den
-
   if (!event.target.classList.contains("navbar")) {
     return;
   }
-  let sec = document.getElementById("sec-1");
 
+  // Pass på at seksjonen der du vil at skal kunne bevege seg er parentElement til event.currentTarget
+  let sec = event.currentTarget.parentElement;
+  // debugger;
   // flytter ikke hvis vinduet er
   if (700 > sec.offsetWidth) {
     return;
@@ -68,7 +72,7 @@ function flyttInit(event) {
   element.utgangsstillingLeft = element.offsetLeft;
   element.utgangsstillingTop = element.offsetTop;
 
-  let flytt = flyttElm(element, sec);
+  let flytt = flyttElmMus(element, sec);
   document.body.addEventListener("mousemove", flytt);
 
   document.addEventListener("mouseup", function fjern() {
@@ -77,23 +81,22 @@ function flyttInit(event) {
   });
 }
 
-function flyttElm(element, sec) {
-  return function flytt(event) {
+function flyttElmMus(element, sec) {
+  return function (event) {
     // Fjerner all default funksjon i eventet, i dette tilfellet mousedown
     event.preventDefault();
 
     let xDiff = element.utgangsstillingMusX - event.x;
     let yDiff = element.utgangsstillingMusY - event.y;
 
-    diffs = borders(element, xDiff, yDiff, sec);
+    diffs = borders(element, sec, xDiff, yDiff);
     xDiff = diffs[0];
     yDiff = diffs[1];
 
     let nyUtgangsstillingLeft = element.utgangsstillingLeft - xDiff;
     let nyUtgangsstillingTop = element.utgangsstillingTop - yDiff;
 
-    element.style.left = nyUtgangsstillingLeft + "px";
-    element.style.top = nyUtgangsstillingTop + "px";
+    flyttElm(element, nyUtgangsstillingLeft, nyUtgangsstillingTop);
 
     element.utgangsstillingLeft = nyUtgangsstillingLeft;
     element.utgangsstillingTop = nyUtgangsstillingTop;
@@ -103,37 +106,26 @@ function flyttElm(element, sec) {
   };
 }
 
-function borders(element, xDiff, yDiff, sec) {
+function borders(element, sec, xDiff = 0, yDiff = 0) {
+  // console.log(element, "hei");
   // Setter border Top
-  if (element.utgangsstillingTop - yDiff < 0) {
-    yDiff = element.utgangsstillingTop;
+  if (element.offsetTop - yDiff < 0) {
+    yDiff = element.offsetTop;
   }
 
   // Setter border høyre
-  if (
-    element.utgangsstillingLeft + element.offsetWidth - xDiff >
-    sec.offsetWidth
-  ) {
-    xDiff = -(
-      sec.offsetWidth -
-      (element.utgangsstillingLeft + element.offsetWidth)
-    );
+  if (element.offsetLeft + element.offsetWidth - xDiff > sec.offsetWidth) {
+    xDiff = -(sec.offsetWidth - (element.offsetLeft + element.offsetWidth));
   }
 
   // Setter border nede
-  if (
-    element.utgangsstillingTop + element.offsetHeight - yDiff >
-    sec.offsetHeight
-  ) {
-    yDiff = -(
-      sec.offsetHeight -
-      (element.utgangsstillingTop + element.offsetHeight)
-    );
+  if (element.offsetTop + element.offsetHeight - yDiff > sec.offsetHeight) {
+    yDiff = -(sec.offsetHeight - (element.offsetTop + element.offsetHeight));
   }
 
   // Setter border venstre
-  if (element.utgangsstillingLeft - xDiff < 0) {
-    xDiff = element.utgangsstillingLeft;
+  if (element.offsetLeft - xDiff < 0) {
+    xDiff = element.offsetLeft;
   }
   return [xDiff, yDiff];
 }
@@ -151,22 +143,21 @@ function ScrollFunc(sections, secDotter, k) {
   };
 }
 
-function resizefunk() {
-  let vindu = document.getElementsByClassName("window");
-  let element1 = vindu[0];
-  let sec2 = document.getElementById("sec-1");
-  let xDiff1 = 0;
-  // Venstre
-  if (element1.offsetLeft < 0) {
-    xDiff1 = element1.utgangsstillingLeft;
+function resizeBorders() {
+  let vinduer = document.getElementsByClassName("window");
+  let element;
+  let sec;
+
+  for (var i = 0; i < vinduer.length; i++) {
+    element = vinduer[i];
+    sec = element.parentElement;
+    xDiff = borders(element, sec)[0];
+    flyttElm(element, element.offsetLeft - xDiff, element.offsetTop);
   }
-  // Høyre
-  if (element1.offsetLeft + element1.offsetWidth > sec2.offsetWidth) {
-    xDiff1 = -(sec2.offsetWidth - (element1.offsetLeft + element1.offsetWidth));
-  }
-  element1.style.left = element1.offsetLeft - xDiff1 + "px";
 }
 
-// Ønsker å ha en flyttfunksjon som ikke bare funker for sec-1.
-// Ønsker borders som flytter elementet automatisk? Så slipper jeg å lage en
-// egen resizefunk.
+function flyttElm(element, left, top) {
+  // Elementet må ha position: absolute;
+  element.style.left = left + "px";
+  element.style.top = top + "px";
+}
