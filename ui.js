@@ -8,6 +8,7 @@ window.addEventListener("load", function () {
   for (var i = 0; i < elements.length; i++) {
     elements[i].addEventListener("mousedown", flyttInit);
   }
+
   window.addEventListener("resize", resizefunk);
 
   // Endre tema
@@ -92,8 +93,7 @@ function flyttElm(element, sec) {
     let nyUtgangsstillingLeft = element.utgangsstillingLeft - xDiff;
     let nyUtgangsstillingTop = element.utgangsstillingTop - yDiff;
 
-    element.style.left = nyUtgangsstillingLeft + "px";
-    element.style.top = nyUtgangsstillingTop + "px";
+    flyttElement(element, nyUtgangsstillingLeft, nyUtgangsstillingTop);
 
     element.utgangsstillingLeft = nyUtgangsstillingLeft;
     element.utgangsstillingTop = nyUtgangsstillingTop;
@@ -167,6 +167,11 @@ function resizefunk() {
   element1.style.left = element1.offsetLeft - xDiff1 + "px";
 }
 
+function flyttElement(element, left, top) {
+  // Elementet må ha position: absolute;
+  element.style.left = left + "px";
+  element.style.top = top + "px";
+}
 // Ønsker å ha en flyttfunksjon som ikke bare funker for sec-1.
 // Ønsker borders som flytter elementet automatisk? Så slipper jeg å lage en
 // egen resizefunk.
