@@ -77,6 +77,7 @@ ul {
 .sec {
   background-color: var(--mainColor);
   min-height: 800px;
+  transition: 0;
 }
 
 .sec:nth-child(even) {
@@ -102,7 +103,8 @@ p {
 
 #sec-1 {
   padding-bottom: 200px;
-  height: 1100px;
+  height: 1000px;
+  transition: 0;
 }
 
 .greeting-wrapper {
@@ -191,13 +193,13 @@ p {
 }
 
 .tematekst {
-  margin-top: 10px;
-  padding: 20px;
+  margin-top: 40px;
+  /* padding: 20px; */
 }
 
 .temadots {
   width: 250px;
-  height: 90px;
+  height: 80px;
   margin: auto;
 
   display: grid;
@@ -333,6 +335,7 @@ p {
   margin-top: 25px;
   background-color: rgba(21, 32, 43, 0.6);
   padding: 20px;
+  border-radius: 5px;
   line-height: 2em;
 
   -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.7);
@@ -379,6 +382,7 @@ li {
   }
   .intro-wrapper {
     /* position:  */
+    left: calc(50% - 35%);
     grid-template-areas:
       "navbar navbar"
       "left-column left-column"
