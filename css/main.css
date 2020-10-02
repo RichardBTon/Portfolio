@@ -6,7 +6,7 @@
 
   --mainText: #fff;
   --secondaryText: #eeeeee;
-  --headerColor: #4b5156;
+  --headerColor: #fff;
 
   --themeDotBorder: #fff;
 }
@@ -310,7 +310,7 @@ li {
 }
 
 #about {
-  margin-top: 50px;
+  margin: 30px 0 30px 0;
 
   display: grid;
   justify-items: center;
@@ -407,6 +407,9 @@ li {
     margin: auto;
     margin-top: 50px;
   }
+  #sec-1 {
+    height: 1550px;
+  }
   .greeting-wrapper {
     padding-top: 5em;
   }
@@ -424,7 +427,7 @@ li {
     margin: 0;
   }
   .aboutbilde {
-    margin: 34px 0 34px 0;
+    margin: 55px 0 55px 0;
   }
   .skills div ul {
     list-style: none;
