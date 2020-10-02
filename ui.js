@@ -56,7 +56,7 @@ function flyttInit(event) {
   if (!event.target.classList.contains("navbar")) {
     return;
   }
-
+  event.currentTarget.style.transitionDuration = "0s";
   // Pass på at seksjonen der du vil at skal kunne bevege seg er parentElement til event.currentTarget
   let sec = event.currentTarget.parentElement;
   // debugger;
@@ -76,6 +76,7 @@ function flyttInit(event) {
   document.body.addEventListener("mousemove", flytt);
 
   document.addEventListener("mouseup", function fjern() {
+    element.style.transitionDuration = "inherit";
     document.body.removeEventListener("mousemove", flytt);
     document.body.removeEventListener("mouseup", fjern);
   });
