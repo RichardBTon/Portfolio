@@ -20,7 +20,7 @@ body {
 
 .snake-part {
   position: absolute;
-  background-color: blue;
+  background-color: #4b8bbe;
   height: var(--snakePartSize);
   width: var(--snakePartSize);
   /* border: solid 2px;

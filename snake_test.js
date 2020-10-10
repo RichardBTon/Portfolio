@@ -1,6 +1,7 @@
 const snakeBox = document.querySelector("#snake-container");
 const pixelsPerSquare = 20;
 const snakePartClassCSS = "snake-part";
+
 document.documentElement.style.setProperty(
   "--snakePartSize",
   `${pixelsPerSquare}px`
@@ -22,8 +23,8 @@ class SnakePart {
   move(x, y) {
     this.x = x;
     this.y = y;
-    let windowX = x * pixelsPerSquare;
-    let windowY = y * pixelsPerSquare;
+    let windowX = this.x * pixelsPerSquare;
+    let windowY = this.y * pixelsPerSquare;
     this.elm.style.left = `${windowX}px`;
     this.elm.style.top = `${windowY}px`;
   }
@@ -33,7 +34,6 @@ class Head extends SnakePart {
   constructor(x, y, tailCoords) {
     super(x, y);
     this.elm.classList.add("snake-head");
-
     this.history = tailCoords;
   }
   moveHead(x, y) {
@@ -43,6 +43,33 @@ class Head extends SnakePart {
     this.move(x, y);
   }
 }
+
+class Snake {
+  constructor(headX, headY, tailCoords) {
+    // let head = new Head(headX, headY, tailCoords);
+
+    this.head = new Head(headX, headY, tailCoords);
+
+    let tail = [];
+    for (var i = 0; i < tailCoords.length; i++) {
+      tail.push(new SnakePart(tailCoords[i].x, tailCoords[i].y));
+    }
+    this.tail = tail;
+
+    this.vx = 0;
+    this.vy = 0;
+  }
+  move() {
+    let x = this.head.x + this.vx;
+    let y = this.head.y + this.vy;
+
+    this.head.moveHead(x, y);
+    for (var i = 0; i < this.tail.length; i++) {
+      this.tail[i].move(this.head.history[i].x, this.head.history[i].y);
+    }
+  }
+}
+
 let tailCoords = [
   {
     x: 4,
@@ -58,21 +85,51 @@ let tailCoords = [
   },
 ];
 
-const head = new Head(5, 5, tailCoords);
+const snake = new Snake(5, 5, tailCoords);
 
-let tail = [];
-for (var i = 0; i < head.history.length; i++) {
-  tailPart = new SnakePart(head.x - (i + 1), head.y);
-  tail.push(tailPart);
-}
+// let tail = [];
+// for (var i = 0; i < head.history.length; i++) {
+//   tailPart = new SnakePart(head.x - (i + 1), head.y);
+//   tail.push(tailPart);
+// }
 
-function moveSnake() {
-  head.moveHead(6, 5);
-  // console.log(head.history);
-  for (var i = 0; i < tail.length; i++) {
-    // console.log(tail[i].x, tail[i].y);
-    tail[i].move(head.history[i].x, head.history[i].y);
+// const head = new Head(5, 5, tailCoords);
+
+// function moveSnake() {
+//   head.moveHead(6, 5);
+//   // console.log(head.history);
+//   for (var i = 0; i < tail.length; i++) {
+//     // console.log(tail[i].x, tail[i].y);
+//     tail[i].move(head.history[i].x, head.history[i].y);
+//   }
+// }
+//
+// moveSnake();
+
+// Actually moving with keys
+window.addEventListener("keydown", arrowMove);
+
+function arrowMove(e) {
+  if (![37, 38, 39, 40].includes(e.keyCode)) return;
+  if (e.keyCode === 37) {
+    // left
+    snake.vx = -1;
+    snake.vy = 0;
   }
+  if (e.keyCode === 38) {
+    // up
+    snake.vx = 0;
+    snake.vy = -1;
+  }
+  if (e.keyCode === 39) {
+    // right
+    snake.vx = 1;
+    snake.vy = 0;
+  }
+  if (e.keyCode === 40) {
+    // down
+    snake.vx = 0;
+    snake.vy = 1;
+  }
+  snake.move();
 }
-
-moveSnake();
