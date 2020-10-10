@@ -77,7 +77,7 @@ ul {
 
 .sec {
   background-color: var(--mainColor);
-  min-height: 800px;
+  min-height: 500px;
 }
 
 .sec:nth-child(even) {
@@ -362,6 +362,51 @@ li {
   list-style: disc;
   list-style-position: inside;
 }
+
+.cards {
+  margin: auto;
+  margin: 50px 0 50px 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+}
+
+.card {
+  /* overflow: auto; */
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.7);
+
+  background-color: var(--secondaryColor);
+  /* border: dashed 2px lightblue; */
+  height: 40vw;
+  width: 25vw;
+}
+.card:hover {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.7);
+}
+
+.card h4,
+.card p {
+  text-align: left;
+  color: var(--secondaryText);
+  padding: 10px;
+}
+.card h4 {
+  border-radius: 5px 5px 0 0;
+  background-color: rgba(255, 255, 255, 0.1);
+
+  font-size: 3vw;
+}
+
+.trylink {
+  margin-top: 50px;
+  font-size: 30px;
+}
+.trylink:hover {
+  border-bottom-width: 4px;
+}
 @media screen and (max-width: 1600px) {
   .main-container {
     width: 95%;
@@ -430,5 +475,15 @@ li {
   }
   .skills div ul {
     list-style: none;
+  }
+  .cards {
+    grid-gap: 30px;
+    grid-template-columns: 1fr;
+  }
+  .card {
+    width: 80%;
+  }
+  .card h4 {
+    font-size: 5vw;
   }
 }
