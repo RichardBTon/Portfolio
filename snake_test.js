@@ -1,5 +1,5 @@
 const snakeBox = document.querySelector("#snake-container");
-const pixelsPerSquare = 20;
+const pixelsPerSquare = 50;
 const snakePartClassCSS = "snake-part";
 
 document.documentElement.style.setProperty(
@@ -46,9 +46,9 @@ class Head extends SnakePart {
 
 class Snake {
   constructor(headX, headY, tailCoords) {
-    // let head = new Head(headX, headY, tailCoords);
+    let head = new Head(headX, headY, tailCoords);
 
-    this.head = new Head(headX, headY, tailCoords);
+    this.head = head;
 
     let tail = [];
     for (var i = 0; i < tailCoords.length; i++) {
@@ -58,6 +58,8 @@ class Snake {
 
     this.vx = 0;
     this.vy = 0;
+
+    this.moving = false;
   }
   move() {
     let x = this.head.x + this.vx;
@@ -67,6 +69,19 @@ class Snake {
     for (var i = 0; i < this.tail.length; i++) {
       this.tail[i].move(this.head.history[i].x, this.head.history[i].y);
     }
+  }
+  start() {
+    if (this.moving) return;
+    console.log("starter");
+    this.moving = true;
+    let move = () => this.move();
+    this.gameLoop = setInterval(move, 200);
+  }
+  stop() {
+    if (!this.moving) return;
+    console.log("stopper");
+    this.moving = false;
+    clearInterval(this.gameLoop);
   }
 }
 
@@ -107,7 +122,15 @@ const snake = new Snake(5, 5, tailCoords);
 // moveSnake();
 
 // Actually moving with keys
-window.addEventListener("keydown", arrowMove);
+window.addEventListener("keydown", keyMove);
+function keyMove(e) {
+  arrowMove(e);
+  if (![32].includes(e.keyCode)) return;
+  e.preventDefault();
+  if (e.keyCode === 32) {
+    snake.moving ? snake.stop() : snake.start();
+  }
+}
 
 function arrowMove(e) {
   if (![37, 38, 39, 40].includes(e.keyCode)) return;
@@ -115,21 +138,20 @@ function arrowMove(e) {
     // left
     snake.vx = -1;
     snake.vy = 0;
-  }
-  if (e.keyCode === 38) {
+  } else if (e.keyCode === 38) {
     // up
     snake.vx = 0;
     snake.vy = -1;
-  }
-  if (e.keyCode === 39) {
+  } else if (e.keyCode === 39) {
     // right
     snake.vx = 1;
     snake.vy = 0;
-  }
-  if (e.keyCode === 40) {
+  } else if (e.keyCode === 40) {
     // down
     snake.vx = 0;
     snake.vy = 1;
   }
-  snake.move();
+  if (!snake.moving) {
+    snake.start();
+  }
 }
