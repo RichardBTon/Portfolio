@@ -1,5 +1,5 @@
 :root {
-  --snakePartSize : 20px;
+  --snakePartSize: 20px;
 }
 
 * {
@@ -23,7 +23,11 @@ body {
   background-color: blue;
   height: var(--snakePartSize);
   width: var(--snakePartSize);
-    /* border: solid 2px;
+  /* border: solid 2px;
     border-color: inherit; */
   border-radius: 4px;
+}
+
+.snake-head {
+  background-color: #306998;
 }
