@@ -31,7 +31,7 @@ window.addEventListener("load", function () {
   let sections = Array.from(document.getElementsByClassName("sec"));
 
   for (var i = 0; i < secDotter.length; i++) {
-    let addScrollFunc1 = ScrollFunc(sections, secDotter, i);
+    let addScrollFunc1 = ScrollFunc(sections, i);
     secDotter[i].addEventListener("click", addScrollFunc1);
   }
 
@@ -131,16 +131,17 @@ function borders(element, sec, xDiff = 0, yDiff = 0) {
   return [xDiff, yDiff];
 }
 
-function ScrollFunc(sections, secDotter, k) {
+function ScrollFunc(sections, k) {
   return function () {
-    let sectionsOver = sections.slice(0, k + 1);
-    let totalHeight = 0;
+    // let sectionsOver = sections.slice(0, k + 1);
+    // let totalHeight = 0;
+    //
+    // for (var i = 0; i < sectionsOver.length; i++) {
+    //   totalHeight += sectionsOver[i].offsetHeight;
+    // }
+        // window.scrollTo(0, totalHeight);
+    sections[k + 1].scrollIntoView();
 
-    for (var i = 0; i < sectionsOver.length; i++) {
-      totalHeight += sectionsOver[i].offsetHeight;
-    }
-
-    window.scrollTo(0, totalHeight);
   };
 }
 

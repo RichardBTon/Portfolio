@@ -1,21 +1,36 @@
 const snakeBox = document.querySelector("#snake-container");
 const pixelsPerSquare = 20;
-class snakePart {
+const snakePartClassCSS = "snake-part"
+document.documentElement.style.setProperty("--snakePartSize", `${pixelsPerSquare}px`)
+
+class SnakePart {
+
   constructor(x, y) {
     this.x = x;
     this.y = y;
+
+    const part = document.createElement("div");
+    part.classList.add(snakePartClassCSS);
+    snakeBox.appendChild(part);
+    this.elm = part;
+
+    this.move(this.x, this.y)
+  }
+
+  move(x, y){
+    this.x = x;
+    this.y = y;
+    let windowX = x * pixelsPerSquare
+    let windowY = y * pixelsPerSquare
+    this.elm.style.left = `${windowX}px`;
+    this.elm.style.top = `${windowY}px`;
   }
 }
 
-function makeSnakePart(x, y) {
-  console.log(x, y);
-  const part = document.createElement("div");
-  part.classList.add("snake-part");
-
-  snakeBox.appendChild(part);
-  part.style.left = `${x}px`;
-  part.style.top = `${y}px`;
+class Head extends SnakePart{
+  constructor(x, y) {
+    super(x, y)
+  }
 }
 
-// document.getElementById("hei").style.left = "100px";
-makeSnakePart(100, 100);
+const head = new Head(5, 5)

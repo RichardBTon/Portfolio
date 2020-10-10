@@ -1,3 +1,7 @@
+:root {
+  --snakePartSize : 20px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,14 +11,19 @@ body {
 }
 
 #snake-container {
-  height: 800px;
+  background-color: lightgreen;
+  margin: auto;
+  width: 90%;
+  height: 700px;
+  position: relative;
 }
 
 .snake-part {
   position: absolute;
   background-color: blue;
-  height: 20px;
-  width: 20px;
-  margin: 2px;
+  height: var(--snakePartSize);
+  width: var(--snakePartSize);
+    /* border: solid 2px;
+    border-color: inherit; */
   border-radius: 4px;
 }

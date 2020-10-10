@@ -380,8 +380,9 @@ li {
 
   background-color: var(--secondaryColor);
   /* border: dashed 2px lightblue; */
-  height: 40vw;
-  width: 25vw;
+  height: 300px;
+  max-height: 800px;
+  width: 90%;
 }
 .card:hover {
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.7);
@@ -389,7 +390,6 @@ li {
 
 .card h4,
 .card p {
-  text-align: left;
   color: var(--secondaryText);
   padding: 10px;
 }
@@ -397,7 +397,7 @@ li {
   border-radius: 5px 5px 0 0;
   background-color: rgba(255, 255, 255, 0.1);
 
-  font-size: 3vw;
+  font-size: 200%;
 }
 
 .trylink {
