@@ -2,19 +2,7 @@
   --snakePartSize: 20px;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-}
-body {
-  background-color: #ffd43b;
-}
-
 #snake-container {
-  background-color: lightgreen;
-  margin: auto;
-  width: 90%;
-  height: 700px;
   position: relative;
 }
 
@@ -23,11 +11,17 @@ body {
   background-color: #4b8bbe;
   height: var(--snakePartSize);
   width: var(--snakePartSize);
-  /* border: solid 2px;
-    border-color: inherit; */
   border-radius: 4px;
+  transition: 0s;
 }
 
 .snake-head {
-  background-color: #306998;
+  position: absolute;
+  transition: 0s;
+  height: var(--snakePartSize);
+  width: var(--snakePartSize);
+  background-color: none;
+  background-image: url(python_head.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
