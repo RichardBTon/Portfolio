@@ -8,20 +8,23 @@
 
 .snake-part {
   position: absolute;
-  background-color: #4b8bbe;
-  height: var(--snakePartSize);
-  width: var(--snakePartSize);
+  background-color: red;
+  /* Background skjer bare hvis det er noe galt med de videre klassene */
+  height: calc(var(--snakePartSize) - 2px);
+  width: calc(var(--snakePartSize) - 2px);
   border-radius: 4px;
   transition: 0s;
 }
 
-.snake-head {
-  position: absolute;
-  transition: 0s;
-  height: var(--snakePartSize);
-  width: var(--snakePartSize);
-  background-color: none;
-  background-image: url(python_head.png);
-  background-size: contain;
-  background-repeat: no-repeat;
+.blue-main {
+  background-color: #4b8bbe;
+}
+.blue-head {
+  background-color: #306998;
+}
+.yellow-main {
+  background-color: #ffe873;
+}
+.yellow-head {
+  background-color: #ffd43b;
 }

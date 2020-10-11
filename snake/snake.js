@@ -1,5 +1,8 @@
+// ============================================================
+// Initialisation
+
 const snakeBox = document.querySelector("#snake-container");
-const pxPerSquare = 50;
+const pxPerSquare = 40;
 const snakePartClassCSS = "snake-part";
 
 document.documentElement.style.setProperty(
@@ -7,13 +10,17 @@ document.documentElement.style.setProperty(
   `${pxPerSquare}px`
 );
 
+// ============================================================
+// Snake classes
+
 class SnakePart {
-  constructor(x, y) {
+  constructor(x, y, pxPerSquare) {
     this.x = x;
     this.y = y;
-
+    this.pxPerSquare = pxPerSquare;
     const part = document.createElement("div");
-    part.classList.add(snakePartClassCSS);
+    part.classList.add("snake-part");
+    part.classList.add("blue-main");
     snakeBox.appendChild(part);
     this.elm = part;
 
@@ -23,18 +30,19 @@ class SnakePart {
   move(x, y) {
     this.x = x;
     this.y = y;
-    let windowX = this.x * pxPerSquare;
-    let windowY = this.y * pxPerSquare;
+    let windowX = this.x * this.pxPerSquare;
+    let windowY = this.y * this.pxPerSquare;
     this.elm.style.left = `${windowX}px`;
     this.elm.style.top = `${windowY}px`;
   }
 }
 
 class Head extends SnakePart {
-  constructor(x, y, tailCoords) {
-    super(x, y);
-    this.elm.classList.add("snake-head");
-    this.elm.classList.remove(snakePartClassCSS);
+  constructor(x, y, pxPerSquare, tailCoords) {
+    super(x, y, pxPerSquare);
+    this.pxPerSquare = pxPerSquare;
+    this.elm.classList.add("blue-head");
+
     this.history = tailCoords;
   }
   moveHead(x, y) {
@@ -43,25 +51,26 @@ class Head extends SnakePart {
     this.history = newHistory;
     this.move(x, y);
   }
-  rotateHead() {}
 }
 
 class Snake {
-  constructor(headX, headY, tailCoords, container) {
+  constructor(headX, headY, tailCoords, pxPerSquare, container) {
     this.container = container;
     this.containerWidth = Math.floor(container.offsetWidth / pxPerSquare);
     this.containerHeight = Math.floor(container.offsetHeight / pxPerSquare);
-
-    let head = new Head(headX, headY, tailCoords);
+    this.pxPerSquare = pxPerSquare;
+    let head = new Head(headX, headY, pxPerSquare, tailCoords);
     this.head = head;
 
     let tail = [];
     for (var i = 0; i < tailCoords.length; i++) {
-      tail.push(new SnakePart(tailCoords[i].x, tailCoords[i].y));
+      tail.push(
+        new SnakePart(tailCoords[i].x, tailCoords[i].y, this.pxPerSquare)
+      );
     }
     this.tail = tail;
 
-    this.vx = -1;
+    this.vx = 0;
     this.vy = 0;
 
     this.moving = false;
@@ -78,22 +87,22 @@ class Snake {
     }
   }
 
-  moveLeft() {
+  setMoveLeft() {
     if (this.vx === 1) return;
     this.vx = -1;
     this.vy = 0;
   }
-  moveRight() {
+  setMoveRight() {
     if (this.vx === -1) return;
     this.vx = 1;
     this.vy = 0;
   }
-  moveUp() {
+  setMoveUp() {
     if (this.vy === 1) return;
     this.vx = 0;
     this.vy = -1;
   }
-  moveDown() {
+  setMoveDown() {
     if (this.vy === -1) return;
     this.vx = 0;
     this.vy = 1;
@@ -118,43 +127,70 @@ class Snake {
       y = this.containerHeight - 1;
     }
     // right border
-    if (x > this.containerWidth - 1) {
+    else if (x > this.containerWidth - 1) {
       x = 0;
     }
     // bottom border
-    if (y > this.containerHeight - 1) {
+    else if (y > this.containerHeight - 1) {
       y = 0;
     }
     // left border
-    if (x < 0) {
+    else if (x < 0) {
       x = this.containerWidth - 1;
     }
     return [x, y];
   }
 }
 
+// ============================================================
+// Customizable stuff
+
 let tailCoords = [
   {
-    x: 6,
-    y: 5,
+    x: 23,
+    y: 9,
   },
   {
-    x: 7,
-    y: 5,
+    x: 24,
+    y: 9,
   },
   {
-    x: 8,
-    y: 5,
+    x: 24,
+    y: 10,
+  },
+  {
+    x: 23,
+    y: 10,
+  },
+  {
+    x: 22,
+    y: 10,
+  },
+  {
+    x: 21,
+    y: 10,
+  },
+  {
+    x: 21,
+    y: 11,
+  },
+  {
+    x: 21,
+    y: 12,
   },
 ];
 
-let snake = new Snake(5, 5, tailCoords, snakeBox);
+let snake = new Snake(22, 9, tailCoords, pxPerSquare, snakeBox);
 console.log(snake.containerWidth);
 console.log(snake.container.offsetWidth);
-// Actually moving with keys
-window.addEventListener("resize", function () {
-  snake = new Snake(5, 5, tailCoords, snakeBox);
-});
+
+// window.addEventListener("resize", function () {
+//   snake = new Snake(5, 5, tailCoords, snakeBox);
+// });
+
+// ============================================================
+// Actually moving with keys, not necessary if you want to move any other way
+
 window.addEventListener("keydown", keyMove);
 
 function keyMove(e) {
@@ -171,20 +207,20 @@ function arrowMove(e) {
   e.preventDefault();
   if (e.keyCode === 37) {
     // left
-    snake.moveLeft();
+    snake.setMoveLeft();
   } else if (e.keyCode === 38) {
     // up
-    snake.moveUp();
+    snake.setMoveUp();
   } else if (e.keyCode === 39) {
     // right
-    snake.moveRight();
+    snake.setMoveRight();
   } else if (e.keyCode === 40) {
     // down
-    snake.moveDown();
+    snake.setMoveDown();
   }
   if (!snake.moving) {
     snake.start();
   }
 }
 
-function setBorders() {}
+// ============================================================
