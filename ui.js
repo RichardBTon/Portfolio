@@ -1,5 +1,30 @@
+import { Snake, keyMove, snakeBox, snakePartClassCSS } from "./snake/snake.js";
+let pxPerSquare = snakeBox.offsetHeight / 8;
+console.log(snakeBox.offsetWidth);
+
+let tailCoords = [
+  {
+    x: 5,
+    y: 5,
+  },
+  {
+    x: 4,
+    y: 5,
+  },
+  {
+    x: 3,
+    y: 5,
+  },
+];
+
+const snake = new Snake(6, 5, tailCoords, pxPerSquare, snakeBox);
+// console.log(snake);
+
+window.addEventListener("keydown", (e) => {
+  keyMove(e, snake);
+});
+
 // Kanskje noe over vinduet som viser at man kan bevege det
-// Seksjoner med fargene til knappene i venstre del av vinduet
 
 window.addEventListener("load", function () {
   // Flytt vindu
@@ -10,7 +35,11 @@ window.addEventListener("load", function () {
   }
 
   window.addEventListener("resize", resizeBorders);
-
+  window.addEventListener("resize", () => {
+    // console.log(snake);
+    pxPerSquare = document.querySelector(".snake-container").offsetWidth / 8;
+    snake.updateBorders(pxPerSquare);
+  });
   // Endre tema
   const hrefs = ["purple.css", "blue.css", "green.css", "white.css"];
   const temaKnapper = document.getElementsByClassName("temadot");
@@ -139,9 +168,8 @@ function ScrollFunc(sections, k) {
     // for (var i = 0; i < sectionsOver.length; i++) {
     //   totalHeight += sectionsOver[i].offsetHeight;
     // }
-        // window.scrollTo(0, totalHeight);
+    // window.scrollTo(0, totalHeight);
     sections[k + 1].scrollIntoView();
-
   };
 }
 
@@ -149,6 +177,7 @@ function resizeBorders() {
   let vinduer = document.getElementsByClassName("window");
   let element;
   let sec;
+  let xDiff;
 
   for (var i = 0; i < vinduer.length; i++) {
     element = vinduer[i];

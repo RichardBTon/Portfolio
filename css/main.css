@@ -313,7 +313,7 @@ li {
 
   display: grid;
   justify-items: center;
-  align-items: flex-start;
+  align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
     "about-intro about-intro JS-logo"
@@ -321,11 +321,14 @@ li {
   /* border: 2px dashed lightcoral; */
 }
 
-#JS-logo {
+.js-logo {
   grid-area: JS-logo;
   border-radius: 5px;
 }
-#python-logo {
+.python-logo {
+  width: 80%;
+  height: 80%;
+  border: dashed 1px lightblue;
   grid-area: python-logo;
 }
 

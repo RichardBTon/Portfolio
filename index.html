@@ -73,8 +73,8 @@
         </div>
       </div>
     </section>
-
-    <section id="snake-container" class="sec">
+    <!-- id="snake-container" -->
+    <section class="sec">
       <div class="main-container">
         <div class="header-wrapper">
           <div class="dot-header dot-red"></div>
@@ -82,17 +82,17 @@
         </div>
         <div id="about">
           <img
-            id="JS-logo"
-            class="aboutbilde"
+            class="aboutbilde js-logo"
             src="img/javascript-736400_1280.png"
             alt="javaScript logo"
           />
-          <img
+          <div class="snake-container python-logo"></div>
+          <!-- <img
             id="python-logo"
             class="aboutbilde"
             src="img/python.png"
             alt="python logo"
-          />
+          /> -->
           <div id="about-intro" class="text-wrapper">
             <p>
               Jeg er en relativt ny programmerer som elsker å lære nye ting. Jeg
@@ -162,14 +162,14 @@
       </div>
     </section>
     <section class="sec">
-      <div id="kontakt" class="main-contain50er">
+      <div id="kontakt" class="main-container">
         <div class="header-wrapper">
           <div class="dot-header dot-green"></div>
           <h1>Kontakt</h1>
         </div>
       </div>
     </section>
-    <script type="text/javascript" src="ui.js"></script>
-    <script src="snake/snake.js" charset="utf-8"></script>
+    <script type="module" src="snake/snake.js" charset="utf-8"></script>
+    <script type="module" src="ui.js"></script>
   </body>
 </html>

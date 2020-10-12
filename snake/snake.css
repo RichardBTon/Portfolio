@@ -1,12 +1,14 @@
 :root {
   --snakePartSize: 20px;
+  /* --position: static; */
 }
 
-#snake-container {
+.snake-container {
   position: relative;
 }
 
 .snake-part {
+  /* position: var(--position); */
   position: absolute;
   background-color: red;
   /* Background skjer bare hvis det er noe galt med de videre klassene */
