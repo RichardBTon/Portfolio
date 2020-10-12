@@ -9,6 +9,8 @@
   --headerColor: #fff;
 
   --themeDotBorder: #fff;
+
+  --linkColor: #17a2b8;
 }
 
 * {
@@ -62,7 +64,8 @@ textarea {
 a {
   text-decoration: none;
   font-family: "Roboto Mono", monospace;
-  color: #17a2b8;
+  color: var(--linkColor);
+  transition: 0s;
 }
 
 a:hover {
@@ -76,8 +79,9 @@ ul {
 /* Universal classes */
 
 .sec {
+  padding: 50px;
   background-color: var(--mainColor);
-  min-height: 500px;
+  min-height: 300px;
 }
 
 .sec:nth-child(even) {
@@ -376,15 +380,12 @@ li {
 }
 
 .card {
-  /* overflow: auto; */
   text-align: center;
   border-radius: 5px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.7);
 
   background-color: var(--secondaryColor);
-  /* border: dashed 2px lightblue; */
-  height: 300px;
-  max-height: 800px;
+  min-height: 300px;
   width: 90%;
 }
 .card:hover {
@@ -409,6 +410,35 @@ li {
 }
 .trylink:hover {
   border-bottom-width: 4px;
+}
+
+.contact {
+  margin: 50px 0 50px 0;
+  font-size: 26px;
+  text-align: left;
+  border: dashed 1px lightblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.test {
+  border: solid 1px lightcoral;
+  height: 200px;
+  width: 100%;
+}
+.contact ul li {
+  padding: 15px;
+}
+
+.contact-icons {
+  width: 50px;
+  color: var(--linkColor);
+}
+
+.snake-game {
+  height: 500px;
+  width: 500px;
+  border: solid 1px green;
 }
 @media screen and (max-width: 1600px) {
   .main-container {
@@ -445,6 +475,19 @@ li {
   .aboutbilde {
     margin-top: 100px;
   }
+  .cards {
+    grid-gap: 50px;
+    grid-template-columns: 1fr;
+  }
+  .card {
+    width: 80%;
+  }
+  .card h4 {
+    font-size: 5vw;
+  }
+  .contact {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -478,15 +521,5 @@ li {
   }
   .skills div ul {
     list-style: none;
-  }
-  .cards {
-    grid-gap: 30px;
-    grid-template-columns: 1fr;
-  }
-  .card {
-    width: 80%;
-  }
-  .card h4 {
-    font-size: 5vw;
   }
 }

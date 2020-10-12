@@ -1,5 +1,5 @@
 import { Snake, keyMove, snakeBox, snakePartClassCSS } from "./snake/snake.js";
-let pxPerSquare = snakeBox.offsetHeight / 8;
+let pxPerSquare = snakeBox.offsetHeight / 16;
 console.log(snakeBox.offsetWidth);
 
 let tailCoords = [
@@ -74,7 +74,7 @@ window.addEventListener("load", function () {
 
 function setTema(hrefs, temaKnapper, i) {
   return function () {
-    temaPath = "css/" + hrefs[i];
+    let temaPath = "css/" + hrefs[i];
     document.getElementById("tema_css").href = temaPath;
     localStorage.setItem("tema", temaPath);
   };
@@ -119,7 +119,7 @@ function flyttElmMus(element, sec) {
     let xDiff = element.utgangsstillingMusX - event.x;
     let yDiff = element.utgangsstillingMusY - event.y;
 
-    diffs = borders(element, sec, xDiff, yDiff);
+    let diffs = borders(element, sec, xDiff, yDiff);
     xDiff = diffs[0];
     yDiff = diffs[1];
 
