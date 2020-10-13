@@ -13,6 +13,7 @@
   --linkColor: #17a2b8;
 }
 
+/* || GENERAL */
 * {
   margin: 0;
   padding: 0;
@@ -76,7 +77,7 @@ ul {
   list-style: none;
 }
 
-/* Universal classes */
+/* || SITEWIDE */
 
 .sec {
   padding: 50px;
@@ -127,7 +128,7 @@ p,
 li {
   color: #fff;
 }
-/* Special classes and IDs */
+/* || INTROSECTION */
 
 #sec-1 {
   padding-bottom: 200px;
@@ -141,6 +142,7 @@ li {
 }
 
 /* Custom mac-window */
+
 .intro-wrapper {
   position: absolute;
   width: 900px;
@@ -219,6 +221,8 @@ li {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.7);
 }
 
+/* TEMADOTS */
+
 .tematekst {
   margin-top: 40px;
 }
@@ -265,11 +269,6 @@ li {
   grid-area: right-column;
 }
 
-#quote-sign {
-  grid-area: quote-sign;
-  width: 100px;
-}
-
 .sitat-wrapper {
   width: 340px;
   margin: auto;
@@ -292,12 +291,12 @@ li {
 
 .quote-sign {
   height: 90px;
-  padding-top: 10px;
   position: relative;
   float: left;
   padding: 10px 10px 0 0px;
 }
-/* About */
+
+/* || ABOUTSEKSJON */
 
 .header-wrapper {
   display: flex;
@@ -312,27 +311,25 @@ li {
   margin-right: 15px;
 }
 
-#about {
+.about {
   margin: 30px 0 30px 0;
 
   display: grid;
   justify-items: center;
   align-items: center;
+
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
     "about-intro about-intro JS-logo"
     "ferdigheter ferdigheter python-logo";
-  /* border: 2px dashed lightcoral; */
 }
 
 .js-logo {
   grid-area: JS-logo;
   border-radius: 5px;
 }
+
 .python-logo {
-  width: 80%;
-  height: 80%;
-  border: dashed 1px lightblue;
   grid-area: python-logo;
 }
 
@@ -369,6 +366,8 @@ li {
   list-style: disc;
   list-style-position: inside;
 }
+
+/* || PORTFOLIO */
 
 .cards {
   margin: auto;
@@ -412,6 +411,8 @@ li {
   border-bottom-width: 4px;
 }
 
+/* || CONTACT */
+
 .contact {
   margin: 50px 0 50px 0;
   font-size: 26px;
@@ -419,12 +420,10 @@ li {
   border: dashed 1px lightblue;
   display: grid;
   grid-template-columns: 1fr 1fr;
-}
-
-.test {
   border: solid 1px lightcoral;
-  height: 200px;
-  width: 100%;
+}
+.contact ul {
+  margin: auto;
 }
 .contact ul li {
   padding: 15px;
@@ -436,10 +435,14 @@ li {
 }
 
 .snake-game {
+  margin: auto;
   height: 500px;
   width: 500px;
   border: solid 1px green;
 }
+
+/* || MEDIA QUERIES */
+
 @media screen and (max-width: 1600px) {
   .main-container {
     width: 95%;
@@ -448,6 +451,7 @@ li {
     width: 70%;
   }
 }
+
 @media screen and (max-width: 1000px) {
   #sec-1 {
     height: 1700px;
@@ -464,7 +468,7 @@ li {
     margin-top: 80px;
     margin-bottom: 80px;
   }
-  #about {
+  .about {
     justify-items: none;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
@@ -503,7 +507,7 @@ li {
   .greeting-wrapper {
     padding-top: 5em;
   }
-  #about {
+  .about {
     justify-items: none;
     grid-template-columns: 1fr;
     grid-template-areas:
