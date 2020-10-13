@@ -422,9 +422,7 @@ li {
   grid-template-columns: 1fr 1fr;
   border: solid 1px lightcoral;
 }
-.contact ul {
-  margin: auto;
-}
+
 .contact ul li {
   padding: 15px;
 }
@@ -491,6 +489,9 @@ li {
   }
   .contact {
     grid-template-columns: 1fr;
+  }
+  .contact ul {
+    margin: auto;
   }
 }
 
