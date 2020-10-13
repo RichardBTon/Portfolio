@@ -1,7 +1,7 @@
 // ============================================================
 // Initialisation
 
-const snakeBox = document.querySelector(".snake-container");
+let snakeBox = document.querySelector(".snake-container");
 // const pxPerSquare = 40;
 const snakePartClassCSS = "snake-part";
 
@@ -147,11 +147,13 @@ class Snake {
     }
     return [x, y];
   }
-  updateBorders(pxPerSquare) {
-    this.pxPerSquare = pxPerSquare;
-    this.containerWidth = Math.floor(this.container.offsetWidth / pxPerSquare);
+  updateBorders(container) {
+    this.container = container;
+    this.containerWidth = Math.floor(
+      this.container.offsetWidth / this.pxPerSquare
+    );
     this.containerHeight = Math.floor(
-      this.container.offsetHeight / pxPerSquare
+      this.container.offsetHeight / this.pxPerSquare
     );
   }
 }

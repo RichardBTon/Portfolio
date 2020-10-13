@@ -14,6 +14,7 @@
 }
 
 /* || GENERAL */
+
 * {
   margin: 0;
   padding: 0;
@@ -128,7 +129,8 @@ p,
 li {
   color: #fff;
 }
-/* || INTROSECTION */
+
+/* || INTRO SECTION */
 
 #sec-1 {
   padding-bottom: 200px;
@@ -416,11 +418,8 @@ li {
 .contact {
   margin: 50px 0 50px 0;
   font-size: 26px;
-  text-align: left;
-  border: dashed 1px lightblue;
+  text-align: center;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: solid 1px lightcoral;
 }
 
 .contact ul li {
