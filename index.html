@@ -13,17 +13,24 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Icons -->
+
     <script
       src="https://kit.fontawesome.com/bc409d636a.js"
       crossorigin="anonymous"
     ></script>
+
+    <link rel="icon" href="/img/favicon-32x32.png" />
+
+    <!-- CSS links -->
     <link rel="stylesheet" href="snake/snake.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link id="tema_css" rel="stylesheet" href="" />
 
     <title>Richard Tøndel</title>
   </head>
-  <body>
+  <body class="snake-container">
     <section class="sec" id="sec-1">
       <div class="greeting-wrapper">
         <h1>
@@ -84,7 +91,7 @@
           <div class="dot-header dot-red"></div>
           <h1>Om Meg</h1>
         </div>
-        <div id="about">
+        <div class="about">
           <img
             class="aboutbilde js-logo"
             src="img/javascript-736400_1280.png"
@@ -92,8 +99,7 @@
           />
           <!-- <div class="python-logo"></div> -->
           <img
-            id="python-logo"
-            class="aboutbilde"
+            class="aboutbilde python-logo"
             src="img/python.png"
             alt="python logo"
           />
@@ -103,8 +109,8 @@
               startet å programmere da det ble prakket på meg som valgfag på
               utveksling i Frankrike, og fant fort ut at jeg elsket
               problemløsningsaspektet og ble litt forelsket. Jeg har kost meg
-              med Python og senere JavaScript og HTML/CSS. Du kan se noen av
-              prosjektene mine under.
+              masse med Python og senere JavaScript og HTML/CSS. Du kan se noen
+              av prosjektene mine under.
               <a href="https://github.com/RichardBTon" target="_blank"
                 >Eller finne meg på GitHub.</a
               >
@@ -211,10 +217,10 @@
             </li>
             <li>
               <i class="fas fa-phone-alt contact-icons"></i
-              ><a href="tel:996-86-905">99686905</a>
+              ><a href="tel:996-86-905">996 86 905</a>
             </li>
           </ul>
-          <div class="snake-container snake-game"></div>
+          <!-- <div class="snake-container snake-game"></div> -->
         </div>
         <div class="centering">
           <i id="to-top-btn" class="fas fa-chevron-up fa-5x to-top"></i>
