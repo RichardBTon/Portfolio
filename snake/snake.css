@@ -11,7 +11,7 @@
   /* position: var(--position); */
   position: absolute;
   background-color: red;
-  /* Background skjer bare hvis det er noe galt med de videre klassene */
+  /* Background red skjer bare hvis det er noe galt med de videre klassene */
   height: calc(var(--snakePartSize) - 2px);
   width: calc(var(--snakePartSize) - 2px);
   border-radius: 4px;

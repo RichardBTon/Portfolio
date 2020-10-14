@@ -377,16 +377,19 @@ li {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
+  grid-gap: 40px;
 }
 
 .card {
+  position: relative;
+  line-height: 2em;
   text-align: center;
   border-radius: 5px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.7);
 
   background-color: var(--secondaryColor);
   min-height: 300px;
-  width: 90%;
+  /* width: 90%; */
 }
 .card:hover {
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.7);
@@ -394,38 +397,42 @@ li {
 
 .card h4,
 .card p {
+  /* border: dashed 1px lightcoral; */
+
   color: var(--secondaryText);
   padding: 10px;
 }
+
 .card h4 {
   border-radius: 5px 5px 0 0;
   background-color: rgba(255, 255, 255, 0.1);
 
   font-size: 200%;
 }
-
+.card p {
+  margin-bottom: 60px;
+}
 .trylink {
-  margin-top: 50px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+
+  margin: 20px;
   font-size: 30px;
 }
-.trylink:hover {
+/* .trylink:hover {
   border-bottom-width: 4px;
-}
+} */
 
 .contact {
   margin: 50px 0 50px 0;
   font-size: 26px;
   text-align: left;
-  border: dashed 1px lightblue;
+  /* border: dashed 1px lightblue; */
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.test {
-  border: solid 1px lightcoral;
-  height: 200px;
-  width: 100%;
-}
 .contact ul li {
   padding: 15px;
 }
@@ -439,6 +446,19 @@ li {
   height: 500px;
   width: 500px;
   border: solid 1px green;
+}
+
+.to-top {
+  /* border: solid 1px blue; */
+  color: var(--headerColor);
+}
+.to-top:hover {
+  cursor: pointer;
+}
+.centering {
+  /* border: solid 1px blue; */
+  margin: auto;
+  width: 75px;
 }
 @media screen and (max-width: 1600px) {
   .main-container {

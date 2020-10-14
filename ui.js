@@ -27,19 +27,6 @@ window.addEventListener("keydown", (e) => {
 // Kanskje noe over vinduet som viser at man kan bevege det
 
 window.addEventListener("load", function () {
-  // Flytt vindu
-  let vinduer = document.getElementsByClassName("window");
-
-  for (var i = 0; i < vinduer.length; i++) {
-    vinduer[i].addEventListener("mousedown", flyttInit);
-  }
-
-  window.addEventListener("resize", resizeBorders);
-  window.addEventListener("resize", () => {
-    // console.log(snake);
-    pxPerSquare = document.querySelector(".snake-container").offsetWidth / 8;
-    snake.updateBorders(pxPerSquare);
-  });
   // Endre tema
   const hrefs = ["purple.css", "blue.css", "green.css", "white.css"];
   const temaKnapper = document.getElementsByClassName("temadot");
@@ -55,6 +42,20 @@ window.addEventListener("load", function () {
     temaKnapper[i].addEventListener("click", setTema1);
   }
 
+  // Flytt vindu
+  let vinduer = document.getElementsByClassName("window");
+
+  for (var i = 0; i < vinduer.length; i++) {
+    vinduer[i].addEventListener("mousedown", flyttInit);
+  }
+
+  window.addEventListener("resize", resizeBorders);
+  window.addEventListener("resize", () => {
+    // console.log(snake);
+    pxPerSquare = document.querySelector(".snake-container").offsetWidth / 8;
+    snake.updateBorders(pxPerSquare);
+  });
+
   // Scrollknapper
   let secDotter = Array.from(document.getElementsByClassName("dot"));
   let sections = Array.from(document.getElementsByClassName("sec"));
@@ -64,12 +65,18 @@ window.addEventListener("load", function () {
     secDotter[i].addEventListener("click", addScrollFunc1);
   }
 
+  // Kontaktscroll
   document
     .getElementById("kontakt-btn")
     .addEventListener("click", function (event) {
       event.preventDefault();
       document.getElementById("kontakt").scrollIntoView();
     });
+  //scroll to top
+
+  document.querySelector("#to-top-btn").addEventListener("click", () => {
+    scrollTo(0, 0);
+  });
 });
 
 function setTema(hrefs, temaKnapper, i) {
