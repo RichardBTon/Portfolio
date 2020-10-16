@@ -1,38 +1,39 @@
 // ==============================================================
 // Snake
+//
+// import { Snake, keyMove, snakePartClassCSS } from "./snake/snake.js";
+// let snakeBox = document.querySelector(".snake-container");
+// // let pxPerSquare = snakeBox.offsetHeight / 16;
+// let pxPerSquare = 40;
+// // console.log(snakeBox.offsetWidth);
+//
+// let tailCoords = [
+//   {
+//     x: 5,
+//     y: 5,
+//   },
+//   {
+//     x: 4,
+//     y: 5,
+//   },
+//   {
+//     x: 3,
+//     y: 5,
+//   },
+// ];
+//
+// const snake = new Snake(6, 5, tailCoords, pxPerSquare, snakeBox);
+// // console.log(snake);
+//
+// window.addEventListener("keydown", (e) => {
+//   keyMove(e, snake);
+// });
+//
+// window.addEventListener("resize", () => {
+//   snakeBox = document.querySelector(".snake-container");
+//   snake.updateBorders(snakeBox);
+// });
 
-import { Snake, keyMove, snakePartClassCSS } from "./snake/snake.js";
-let snakeBox = document.querySelector(".snake-container");
-// let pxPerSquare = snakeBox.offsetHeight / 16;
-let pxPerSquare = 40;
-// console.log(snakeBox.offsetWidth);
-
-let tailCoords = [
-  {
-    x: 5,
-    y: 5,
-  },
-  {
-    x: 4,
-    y: 5,
-  },
-  {
-    x: 3,
-    y: 5,
-  },
-];
-
-const snake = new Snake(6, 5, tailCoords, pxPerSquare, snakeBox);
-// console.log(snake);
-
-window.addEventListener("keydown", (e) => {
-  keyMove(e, snake);
-});
-
-window.addEventListener("resize", () => {
-  snakeBox = document.querySelector(".snake-container");
-  snake.updateBorders(snakeBox);
-});
 // ==============================================================
 // Main funksjon
 // Kanskje noe over vinduet som viser at man kan bevege det
@@ -63,7 +64,7 @@ window.addEventListener("load", function () {
   }
 
   // Flytt vindu
-  let vinduer = document.getElementsByClassName("window");
+  // let vinduer = document.getElementsByClassName("window");
 
   for (var i = 0; i < vinduer.length; i++) {
     vinduer[i].addEventListener("mousedown", flyttInit);
@@ -94,6 +95,7 @@ window.addEventListener("load", function () {
   //scroll to top
 
   document.querySelector("#to-top-btn").addEventListener("click", () => {
+    console.log("hei");
     scrollTo(0, 0);
   });
 });

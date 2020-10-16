@@ -443,13 +443,6 @@ li {
   color: var(--linkColor);
 }
 
-.snake-game {
-  margin: auto;
-  height: 500px;
-  width: 500px;
-  border: solid 1px green;
-}
-
 .to-top {
   /* border: solid 1px blue; */
   color: var(--headerColor);
@@ -520,6 +513,9 @@ li {
 }
 
 @media screen and (max-width: 700px) {
+  .main-container {
+    padding: 0;
+  }
   .intro-wrapper {
     position: static;
     width: 95%;
@@ -542,7 +538,7 @@ li {
       "python-logo";
   }
   .text-wrapper {
-    width: 100%;
+    width: 90%;
     margin: 0;
   }
   .aboutbilde {
@@ -550,5 +546,8 @@ li {
   }
   .skills div ul {
     list-style: none;
+  }
+  .contact a {
+    font-size: 3vw;
   }
 }
