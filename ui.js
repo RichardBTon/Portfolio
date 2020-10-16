@@ -1,40 +1,4 @@
 // ==============================================================
-// Snake
-//
-// import { Snake, keyMove, snakePartClassCSS } from "./snake/snake.js";
-// let snakeBox = document.querySelector(".snake-container");
-// // let pxPerSquare = snakeBox.offsetHeight / 16;
-// let pxPerSquare = 40;
-// // console.log(snakeBox.offsetWidth);
-//
-// let tailCoords = [
-//   {
-//     x: 5,
-//     y: 5,
-//   },
-//   {
-//     x: 4,
-//     y: 5,
-//   },
-//   {
-//     x: 3,
-//     y: 5,
-//   },
-// ];
-//
-// const snake = new Snake(6, 5, tailCoords, pxPerSquare, snakeBox);
-// // console.log(snake);
-//
-// window.addEventListener("keydown", (e) => {
-//   keyMove(e, snake);
-// });
-//
-// window.addEventListener("resize", () => {
-//   snakeBox = document.querySelector(".snake-container");
-//   snake.updateBorders(snakeBox);
-// });
-
-// ==============================================================
 // Main funksjon
 // Kanskje noe over vinduet som viser at man kan bevege det
 
